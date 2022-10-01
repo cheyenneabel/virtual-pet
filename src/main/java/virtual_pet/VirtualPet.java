@@ -1,53 +1,63 @@
 package virtual_pet;
 
-public class VirtualPet {
+ public class VirtualPet {
+     public String name;
+     public int happiness;
+     public int food;
+     public int water;
 
-    private String name;
-    private int happiness = 10;
-    private int food = 10;
-    private int water = 10;
+     public VirtualPet(String name, int happiness, int food, int water) {
 
-    public VirtualPet(String name, int happiness, int food, int water) {
+         this.name = name;
+         this.happiness = 10;
+         this.food = 10;
+         this.water = 10;
+     }
 
-        this.name = name;
-        this.happiness = happiness;
-        this.food = food;
-        this.water = water;
-    }
+     public String getName() {
+         return name;
+     }
+
+     public int getHappiness() {
+         return happiness;
+     }
+
+     public int getFood() {
+         return food;
+     }
+
+     public int getWater() {
+         return water;
+     }
+
+     public void changeHappiness(int numberToAdd) {
+         happiness = happiness + numberToAdd;
+     }
+
+     public void addFood(int numberToAdd) {
+
+         food = food + numberToAdd;
+     }
+
+     public void addWater(int numberToAdd) {
+
+         water = water + numberToAdd;
+     }
+
+     public void tick() {
+         this.food -= 1;
+         this.water -= 1;
+         this.happiness -= 1;
+
+     }
+
+     public void shareStatus() {
+         System.out.println(name + "has a happy level of " + happiness + ", has " + food + " servings of food left");
+         System.out.println("and " + " servings of water left.");
+     }
+ }
 
 
-    public String getName() {
-        return name;
-    }
-    public int getHappiness() {
-        return happiness;
-    }
-    public int getFood() {
-        return food;
-    }
-    public int getWater() {
-        return water;
-    }
-    public void changeHappiness() {
 
-        happiness += 5;
-    }
-    public void addFood() {
 
-        food += 5;
-    }
-    public void addWater() {
 
-        water += 5;
-    }
-
-    public void tick() {
-
-        happiness -= 2;
-        food -= 1;
-        water -= 1;
-
-        System.out.println("My happiness level is " + happiness + ", I have " + food + " meals left, and I have " + water + " remaining servings of water.");
-
-    }
-}
