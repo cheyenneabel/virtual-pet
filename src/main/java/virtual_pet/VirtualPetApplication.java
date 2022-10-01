@@ -11,7 +11,7 @@ public class VirtualPetApplication {
 
         System.out.println("We currently have one silly tail with us.");
         System.out.println("Her name is Yuki. She is a silly black cat.");
-        myShelter.admitPet(new VirtualPet("Yuik", 10, 10, 10));
+        myShelter.admitPet(new VirtualPet("Yuki", 10, 10, 10));
 
         boolean game = true;
 
