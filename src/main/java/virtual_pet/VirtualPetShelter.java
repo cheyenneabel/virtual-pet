@@ -41,6 +41,23 @@ public class VirtualPetShelter {
 
     }
 
+    public void feedPets() {
+        for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
+            entry.getValue().addFood();
+        }
+    }
+    public void waterPets() {
+        for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
+            entry.getValue().addWater();
+        }
+    }
+
+    public void giveHappyToPets() {
+        for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
+            entry.getValue().changeHappiness();
+        }
+    }
+
     public void tick(){
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             entry.getValue().tick();
@@ -50,7 +67,7 @@ public class VirtualPetShelter {
 
     public void greeting() {
         System.out.println("Welcome to Silly Tails! Our tails may be all different colors and sizes,");
-        System.out.println("but they're all silly! Sometimes our water or food bowls will get low.");
+        System.out.println("but they're all silly! 2Sometimes our water or food bowls will get low.");
         System.out.println("We're generally happy pets, but if no one plays with us,");
         System.out.println(" our happiness level goes down.Also sometimes we need help");
         System.out.println(" either being admitted into Silly Tails or adopted into a loving home.");
@@ -65,6 +82,7 @@ public class VirtualPetShelter {
         System.out.println("Press 6 to give us more water.");
         System.out.println("Press 7 to play with us");
     }
+
 }
 
 

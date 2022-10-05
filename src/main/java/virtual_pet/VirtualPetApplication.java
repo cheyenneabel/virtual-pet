@@ -21,6 +21,24 @@ public class VirtualPetApplication {
             myShelter.playerInstructions();
             int newKey = input.nextInt();
 
+            if (newKey == 7) {
+                myShelter.giveHappyToPets();
+                System.out.println("We like when you play with us! We have a higher level of happiness now.");
+                myShelter.tick();
+            }
+
+            if (newKey == 6) {
+                myShelter.waterPets();
+                System.out.println("These pets won't be thirsty today! Thanks for the water.");
+                myShelter.tick();
+            }
+
+            if (newKey == 5) {
+                myShelter.feedPets();
+                System.out.println("They say thank you for the food.");
+                myShelter.tick();
+            }
+
             if (newKey == 4) {
                 game = false;
                 System.out.println("See you later!");
@@ -28,6 +46,7 @@ public class VirtualPetApplication {
 
             if (newKey == 3) {
                 System.out.println("Which pet has a new home to go live in?");
+                System.out.println(input.nextLine());
                 String choice = input.nextLine();
                 myShelter.adoptOut(choice);
                 System.out.println("We'll miss you, funny face.");
