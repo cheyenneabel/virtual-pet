@@ -2,39 +2,49 @@ package virtual_pet;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class VirtualPetShelterTest {
 
-    VirtualPetShelter virtualShelterUnderTest = new VirtualPetShelter();
-    VirtualPet testPet1 = new VirtualPet("Dorian", 10, 10, 10);
+    @Test
+    public void shelterCanAdmitPets() {
+        Map<String, VirtualPet> pets = new HashMap<>();
+        VirtualPet puffy = new VirtualPet("Puffy", 10, 10, 10);
 
-    @Test
-    public void canAdoptPet() {
-        virtualShelterUnderTest.admitPet(testPet1);
-        virtualShelterUnderTest.adoptPets("Dorian");
-        Collection<VirtualPet> retrievedCollection = virtualShelterUnderTest.allPets();
-        assertEquals(0, virtualShelterUnderTest);
-    }
-    @Test
-    public void canWaterAllPetsInShelter() {
-        virtualShelterUnderTest.admitPet(testPet1);
-        virtualShelterUnderTest.admitPet(new VirtualPet("Cecil", 10, 10, 10));
-        virtualShelterUnderTest.waterAllPets();
-        VirtualPet retrievedPet = virtualShelterUnderTest.findPet("Cecil");
-        assertEquals(retrievedPet.getWater(), 13);
+        pets.put("Puffy", puffy);
+
+        assertTrue(pets.containsKey("Puffy"));
     }
 
     @Test
-    public void tickShouldSubtractThreeToEachCategory() {
-        virtualShelterUnderTest.admitPet(testPet1);
-		virtualShelterUnderTest.admitPet(new VirtualPet("Cecil", 10, 10, 10));
-		virtualShelterUnderTest.tick();
-    VirtualPet retrievedPet = virtualShelterUnderTest.findPet("Cecil");
-    assertEquals(retrievedPet.getFood(), 9);
-    assertEquals(retrievedPet.getWater(), 9);
-    assertEquals(retrievedPet.getHappiness(), 9);
+    public void shelterCanAdoptOut(){
+        Map<String, VirtualPet> pets = new HashMap<>();
+        VirtualPet puffy = new VirtualPet("Puffy", 10, 10, 10);
+        VirtualPet dorian = new VirtualPet("Dorian", 10, 10, 10);
+        pets.put("Puffy", puffy);
+        pets.put("Dorian", dorian);
+
+        pets.remove("Dorian", dorian);
+
+        assertFalse(pets.containsKey("Dorian"));
+
+    }
+
+    @Test
+    public void tick() {
+        Map<String, VirtualPet> pets = new HashMap<>();
+        VirtualPet puffy = new VirtualPet("Puffy", 10, 10, 10);
+        VirtualPet dorian = new VirtualPet("Dorian", 10, 10, 10);
+        pets.put("Puffy", puffy);
+
+        puffy.tick();
+        int water = puffy.getWater();
+
+        assertEquals(9, water);
+
     }
 }
+
