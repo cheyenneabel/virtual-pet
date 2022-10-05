@@ -4,23 +4,46 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VirtualPetShelter {
-
     Map<String, VirtualPet> pets = new HashMap<>();
 
-    public void getPets() {
+
+    public VirtualPetShelter() {
+
+        VirtualPet yuki = new VirtualPet("Yuki", 10, 10, 10);
+        VirtualPet zeppy = new VirtualPet("Zeppy", 10, 10, 10);
+        VirtualPet dorian = new VirtualPet("Dorian", 10, 10, 10);
+        pets.put("Yuki", yuki);
+        pets.put("Zeppy", zeppy);
+        pets.put("Dorian", dorian);
+
+    }
+
+    public Map<String, VirtualPet> getPets() {
+        return pets;
+    }
+    public void petStats() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             VirtualPet virtualPet = entry.getValue();
-            System.out.println(virtualPet.getName() + "is at a " + virtualPet.getHappiness() + " happy level");
+            System.out.println(virtualPet.getName() + " is at a " + virtualPet.getHappiness() + " happy level,");
             System.out.println("has " + virtualPet.getFood() + " servings of food, and " + virtualPet.getWater());
             System.out.println(" servings of water left.");
         }
     }
 
+    public void adoptOut(String choice) {
+
+        pets.remove(choice);
+    }
+
+    public void admitPets (String newName) {
+
+        pets.put(newName, new VirtualPet("newName", 10, 10, 10));
+
+    }
 
     public void tick(){
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
-            VirtualPet virtualPet = entry.getValue();
-            virtualPet.tick();
+            entry.getValue().tick();
         }
 
     }

@@ -2,49 +2,45 @@ package virtual_pet;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class VirtualPetShelterTest {
 
     @Test
+    public void shelterHasPets() {
+        VirtualPetShelter myShelter = new VirtualPetShelter();
+
+        myShelter.petStats();
+
+        assertTrue(myShelter.getPets().containsKey("Yuki"));
+    }
+
+    @Test
     public void shelterCanAdmitPets() {
-        Map<String, VirtualPet> pets = new HashMap<>();
-        VirtualPet puffy = new VirtualPet("Puffy", 10, 10, 10);
+        VirtualPetShelter myShelter = new VirtualPetShelter();
 
-        pets.put("Puffy", puffy);
+        myShelter.admitPets("Teddy");
 
-        assertTrue(pets.containsKey("Puffy"));
+        assertTrue(myShelter.getPets().containsKey("Teddy"));
     }
 
     @Test
     public void shelterCanAdoptOut(){
-        Map<String, VirtualPet> pets = new HashMap<>();
-        VirtualPet puffy = new VirtualPet("Puffy", 10, 10, 10);
-        VirtualPet dorian = new VirtualPet("Dorian", 10, 10, 10);
-        pets.put("Puffy", puffy);
-        pets.put("Dorian", dorian);
+       VirtualPetShelter myShelter = new VirtualPetShelter();
 
-        pets.remove("Dorian", dorian);
+       myShelter.adoptOut("Dorian");
 
-        assertFalse(pets.containsKey("Dorian"));
+       assertFalse(myShelter.getPets().containsKey("Dorian"));
 
     }
 
     @Test
     public void tick() {
-        Map<String, VirtualPet> pets = new HashMap<>();
-        VirtualPet puffy = new VirtualPet("Puffy", 10, 10, 10);
-        VirtualPet dorian = new VirtualPet("Dorian", 10, 10, 10);
-        pets.put("Puffy", puffy);
+        VirtualPetShelter myShelter = new VirtualPetShelter();
 
-        puffy.tick();
-        int water = puffy.getWater();
+        myShelter.tick();
 
-        assertEquals(9, water);
-
+        assertEquals(myShelter.getPets().get("Yuki").getWater(), 9);
     }
 }
 
