@@ -87,7 +87,7 @@ public class VirtualPetShelterTest {
 
         myShelter.roboMaintenance();
 
-        assertEquals(myShelter.getRoboPets().get("Maggie").getMaintenance(), 13);
+        assertEquals(myShelter.getPets().get("Maggie").getMaintenance(), 13);
     }
 
     @Test

@@ -1,16 +1,16 @@
 package virtual_pet;
 
-public class RoboticDog extends RoboticVirtualPet implements walking {
+public class RoboticDog extends VirtualPet implements walking {
+    int oil;
+    int maintenance;
 
-
-    public RoboticDog(String name, boolean dogOrCat, int oil, int maintenance) {
-        super(name, dogOrCat, oil, maintenance);
+    public RoboticDog(String name, boolean dogOrCat, boolean isItRobo,  int oil, int maintenance) {
+        super(name, dogOrCat, isItRobo);
     }
-
 
     @Override
     public void dogWalk() {
-        oil = 0;
-        maintenance = 0;
+        oil -= 1;
+        maintenance -= 1;
     }
 }

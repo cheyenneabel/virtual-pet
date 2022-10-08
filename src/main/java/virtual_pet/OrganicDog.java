@@ -2,8 +2,46 @@ package virtual_pet;
 
 public class OrganicDog extends VirtualPet implements walking, cleanBathroomMess {
 
-    public OrganicDog(String name, boolean dogOrCat, int happiness, int food, int water, int cageOrLitter) {
-        super(name, dogOrCat);
+    public int happiness;
+    public int food;
+    public int water;
+    public int cageOrLitter;
+
+    public OrganicDog(String name, boolean dogOrCat, boolean isItRobo, int happiness, int food, int water, int cageOrLitter) {
+        super(name, dogOrCat, isItRobo);
+
+        this.happiness = happiness;
+        this.food = food;
+        this.water = water;
+        this.cageOrLitter = cageOrLitter;
+    }
+
+    public int getHappiness() {
+        return happiness;
+    }
+
+    public int getFood() {
+        return food;
+    }
+
+    public int getWater() {
+        return water;
+    }
+
+    public int getCageOrLitter() {
+        return cageOrLitter;
+    }
+
+    public void addFood() {
+        food += 5;
+    }
+
+    public void addWater() {
+        water += 5;
+    }
+
+    public void addHappiness() {
+        happiness += 5;
     }
 
     @Override
@@ -11,11 +49,19 @@ public class OrganicDog extends VirtualPet implements walking, cleanBathroomMess
         happiness += 4;
         water -= 1;
         food -= 1;
-        cageOrLitter -=3;
+        cageOrLitter -= 3;
     }
 
     @Override
     public void cleanCageOrLitter() {
         cageOrLitter = 0;
+    }
+
+    public void tick() {
+        this.food -= 1;
+        this.water -= 1;
+        this.happiness -= 1;
+        this.cageOrLitter += 1;
+
     }
 }

@@ -3,20 +3,16 @@ package virtual_pet;
  public class VirtualPet {
   public String name;
   public boolean dogOrCat;
-  public int happiness;
-  public int food;
-  public int water;
-  public int cageOrLitter;
+  public  boolean isItRobo;
 
-  public VirtualPet(String name, boolean dogOrCat, int happiness, int food, int water, int cageOrLitter) {
+
+
+  public VirtualPet(String name, boolean dogOrCat, boolean isItRobo) {
    this.name = name;
    this.dogOrCat = dogOrCat;
-   this.happiness = happiness;
-   this.food = food;
-   this.water = water;
-   this.cageOrLitter = cageOrLitter;
-  }
+   this.isItRobo = isItRobo;
 
+  }
 
   public String getName() {
    return name;
@@ -26,39 +22,8 @@ package virtual_pet;
    return dogOrCat;
   }
 
-  public int getHappiness() {
-   return happiness;
-  }
+  public boolean getIsItRobo() { return isItRobo; }
 
-  public int getFood() {
-   return food;
-  }
-
-  public int getWater() {
-   return water;
-  }
-
-  public int getCageOrLitter() {
-   return cageOrLitter;
-  }
-
-  public void changeHappiness() {
-   happiness += 3;
-  }
-
-  public void addFood() {
-   food += 3;
-  }
-
-  public void addWater() {
-   water += 3;
-  }
-
-  public void tick() {
-   this.food -= 1;
-   this.water -= 1;
-   this.happiness -= 1;
-   this.cageOrLitter += 1;
   }
 
 

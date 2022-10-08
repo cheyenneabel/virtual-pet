@@ -9,12 +9,12 @@ public class VirtualPetShelter {
 
     public VirtualPetShelter() {
 
-        OrganicCat yuki = new OrganicCat("Yuki",false , 10, 10, 10, 0);
-        OrganicCat zeppy = new OrganicCat("Zeppy",  false,10, 10, 10, 0);
-        OrganicDog dorian = new OrganicDog("Dorian", true,  10, 10, 10, 0);
-        RoboticCat lucy = new RoboticCat("Lucy", false, 10, 10);
-        RoboticDog maggie = new RoboticDog("Maggie", true, 10, 10);
-        RoboticDog orson = new RoboticDog("Orson", true, 10, 10);
+        OrganicCat yuki = new OrganicCat("Yuki",false , false, 10, 10, 10, 0);
+        OrganicCat zeppy = new OrganicCat("Zeppy",  false,false, 10, 10, 10, 0);
+        OrganicDog dorian = new OrganicDog("Dorian", true,  false, 10, 10, 10, 0);
+        RoboticCat lucy = new RoboticCat("Lucy", false, true, 10, 10);
+        RoboticDog maggie = new RoboticDog("Maggie", true, true, 10, 10);
+        RoboticDog orson = new RoboticDog("Orson", true, true, 10, 10);
         pets.put("Yuki", yuki);
         pets.put("Zeppy", zeppy);
         pets.put("Dorian", dorian);
@@ -36,12 +36,12 @@ public class VirtualPetShelter {
             System.out.println("has " + virtualPet.getFood() + " servings of food, and " + virtualPet.getWater());
             System.out.println(" servings of water left.");
         }
-        for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
-            RoboticVirtualPet roboticVirtualPet = entry.getValue();
-            System.out.println(RoboticVirtualPet).getName() + " has an oil level " + RoboticVirtualPet.getOil() + "/10");
-            System.out.println("and their maintenance level is " + roboticVirtualPet.getMaintenance() + "/10");
+        //for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
+          //  RoboticVirtualPet roboticVirtualPet = entry.getValue();
+            //System.out.println(RoboticVirtualPet).getName() + " has an oil level " + RoboticVirtualPet.getOil() + "/10");
+            //System.out.println("and their maintenance level is " + roboticVirtualPet.getMaintenance() + "/10");
         }
-    }
+
     public void adoptOut(String choice) {
 
             pets.remove(choice);
@@ -56,7 +56,7 @@ public class VirtualPetShelter {
             pets.put(newName, new OrganicDog(newName, true, 10, 10, 10, 0));
         }
         if (isItRobo && dogOrCat) {
-            RoboticVirtualPet virtualPet = new RoboticDog(newName, true, 10, 10);
+            VirtualPet virtualPet = new RoboticDog(newName, true, 10, 10);
             pets.put(newName, new RoboticDog(newName, true, 10, 10));
         }
         if (!isItRobo && !dogOrCat) {
@@ -64,7 +64,7 @@ public class VirtualPetShelter {
             pets.put(newName, new OrganicCat(newName, false, 10, 10, 10, 0));
         }
         if (isItRobo && !dogOrCat) {
-            RoboticVirtualPet virtualPet = new RoboticCat(newName, false, 10, 10);
+            VirtualPet virtualPet = new RoboticCat(newName, false, 10, 10);
             pets.put(newName, new RoboticCat(newName, false, 10, 10));
         }
 
@@ -114,7 +114,7 @@ public class VirtualPetShelter {
     }
 
     public void givePetsOil() {
-        for (Map.Entry<String, RoboticVirtualPet> entry : pets.entrySet()) {
+        for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             entry.getValue().addOil();
         }
     }
@@ -122,12 +122,12 @@ public class VirtualPetShelter {
     public void roboMaintenance() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             entry.getValue();
-            if (getPets().containsValue(VirtualPet.RoboticVirtualPet));
+           // if (getPets().containsValue(VirtualPet.RoboticVirtualPet));
         }
     }
     public void cleanAllCratesAndLitter() {
 
-        if (dogOrCat instanceof VirtualPet) {
+        if (OrganicDog instanceof VirtualPet) {
             ((OrganicDog)pets).cleanCageOrLitter();
         }
         if(OrganicCat instanceof VirtualPet) {

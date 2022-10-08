@@ -1,9 +1,53 @@
 package virtual_pet;
 
 public class OrganicCat extends VirtualPet implements cleanBathroomMess {
+    public int happiness;
+    public int food;
+    public int water;
+    public int cageOrLitter;
 
-    public OrganicCat(String name, boolean dogOrCat, int happiness, int food, int water, int cageOrLitter) {
-        super(name, !dogOrCat, happiness, food, water, cageOrLitter);
+    public OrganicCat(String name, boolean dogOrCat, boolean isItRobo, int happiness, int food, int water, int cageOrLitter) {
+        super(name, !dogOrCat, isItRobo);
+        this.happiness = happiness;
+        this.food = food;
+        this.water = water;
+        this.cageOrLitter = cageOrLitter;
+    }
+
+    public int getHappiness() {
+        return happiness;
+    }
+
+    public int getFood() {
+        return food;
+    }
+
+    public int getWater() {
+        return water;
+    }
+
+    public int getCageOrLitter() {
+        return cageOrLitter;
+    }
+
+    public void addFood() {
+        food += 5;
+    }
+
+    public void addWater() {
+        water += 5;
+    }
+
+    public void addHappiness() {
+        happiness += 5;
+    }
+
+    public void tick() {
+        this.food -= 1;
+        this.water -= 1;
+        this.happiness -= 1;
+        this.cageOrLitter +=1;
+
     }
 
     @Override
