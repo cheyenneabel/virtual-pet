@@ -19,19 +19,18 @@ public class VirtualPetShelterTest {
     public void shelterCanAdmitPets() {
         VirtualPetShelter myShelter = new VirtualPetShelter();
 
-        myShelter.admitPets("Teddy");
+        myShelter.admitPets("Teddy", "robot", "dog");
 
         assertTrue(myShelter.getPets().containsKey("Teddy"));
     }
 
     @Test
-    public void shelterCanAdoptOut(){
-       VirtualPetShelter myShelter = new VirtualPetShelter();
+    public void shelterCanAdoptOut() {
+        VirtualPetShelter myShelter = new VirtualPetShelter();
 
-       myShelter.adoptOut("Dorian");
+        myShelter.adoptOut("Orson");
 
-       assertFalse(myShelter.getPets().containsKey("Dorian"));
-
+        assertFalse(myShelter.getPets().containsKey("Orson"));
     }
 
     @Test
@@ -60,6 +59,7 @@ public class VirtualPetShelterTest {
 
         assertEquals(myShelter.getPets().get("Yuki").getWater(), 13);
     }
+
     @Test
     public void canGivePetsHappiness() {
         VirtualPetShelter myShelter = new VirtualPetShelter();
@@ -68,5 +68,48 @@ public class VirtualPetShelterTest {
 
         assertEquals(myShelter.getPets().get("Yuki").getHappiness(), 13);
     }
+
+    @Test
+    public void canOilRoboticPets() {
+
+        VirtualPetShelter myShelter = new VirtualPetShelter();
+
+        myShelter.givePetsOil();
+
+        assertEquals(myShelter.getPets().get("Orson").getOil(), 13);
+
+    }
+
+    @Test
+    public void canPerformMaintenanceOnRoboPets() {
+
+        VirtualPetShelter myShelter = new VirtualPetShelter();
+
+        myShelter.roboMaintenance();
+
+        assertEquals(myShelter.getRoboPets().get("Maggie").getMaintenance(), 13);
+    }
+
+    @Test
+    public void canCleanAllTheBathroomMess() {
+        VirtualPetShelter myShelter = new VirtualPetShelter();
+
+        myShelter.tick();
+        myShelter.cleanAllCratesAndLitter();
+
+        assertEquals(myShelter.getPets().get("Yuki").getCrateOrLitter(), 0);
+    }
+
+    @Test
+    public void canWalkAllDogs() {
+        VirtualPetShelter myShelter = new VirtualPetShelter();
+
+        myShelter.walkAllTheDogs();
+
+        assertEquals(myShelter.getPets().get("Dorian").getWater(), 9);
+
+    }
 }
+
+
 

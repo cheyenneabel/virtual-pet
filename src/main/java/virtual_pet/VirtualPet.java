@@ -2,22 +2,29 @@ package virtual_pet;
 
  public class VirtualPet {
   public String name;
+  public boolean dogOrCat;
   public int happiness;
   public int food;
   public int water;
+  public int cageOrLitter;
 
-  public VirtualPet(String name, int happiness, int food, int water) {
+  public VirtualPet(String name, boolean dogOrCat, int happiness, int food, int water, int cageOrLitter) {
    this.name = name;
-   this.happiness = 10;
-   this.food = 10;
-   this.water = 10;
-
+   this.dogOrCat = dogOrCat;
+   this.happiness = happiness;
+   this.food = food;
+   this.water = water;
+   this.cageOrLitter = cageOrLitter;
   }
+
 
   public String getName() {
    return name;
   }
 
+  public boolean getDogOrCat() {
+   return dogOrCat;
+  }
 
   public int getHappiness() {
    return happiness;
@@ -31,17 +38,19 @@ package virtual_pet;
    return water;
   }
 
+  public int getCageOrLitter() {
+   return cageOrLitter;
+  }
+
   public void changeHappiness() {
    happiness += 3;
   }
 
   public void addFood() {
-
    food += 3;
   }
 
   public void addWater() {
-
    water += 3;
   }
 
@@ -49,8 +58,12 @@ package virtual_pet;
    this.food -= 1;
    this.water -= 1;
    this.happiness -= 1;
+   this.cageOrLitter += 1;
   }
- }
+
+
+  }
+
 
 
 

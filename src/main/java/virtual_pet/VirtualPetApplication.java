@@ -1,5 +1,7 @@
 package virtual_pet;
 
+import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class VirtualPetApplication {
@@ -12,31 +14,55 @@ public class VirtualPetApplication {
 
         myShelter.greeting();
 
-        System.out.println("We currently have three silly tails with us.");
-        System.out.println("Three cats named Yuki, Zeppy, and Dorian");
-
         boolean game = true;
 
         while (game) {
             myShelter.playerInstructions();
             int newKey = input.nextInt();
 
-            if (newKey == 7) {
-                myShelter.giveHappyToPets();
-                System.out.println("We like when you play with us! We have a higher level of happiness now.");
+            if (newKey == 9) {
                 myShelter.tick();
+                myShelter.givePetsOil();
+                myShelter.roboMaintenance();
+                System.out.println("All the robots are oiled up and maintenance levels are 10/10.");
+                System.out.println("They're like energizer bunnies.");
+            }
+
+            if (newKey == 8) {
+                myShelter.tick();
+                myShelter.cleanAllCratesAndLitter();
+                myShelter.playerInstructions();
+            }
+
+            if (newKey == 7) {
+                myShelter.tick();
+                System.out.println("Would you like to play inside with all the pets, or take the dogs on a walk?");
+                System.out.println("Type \"Play\" to stay inside. Type \"Walk\" to walk the dogs.");
+                String timeForWalk = input.nextLine();
+                System.out.println(input.nextLine());
+
+                if(Objects.equals(timeForWalk, "Play")) {
+                    myShelter.giveHappyToPets();
+                    System.out.println("The pets LOVED the game. Their happiness increased");
+                }
+                else if(Objects.equals(timeForWalk, "Walk")) {
+                    myShelter.walkAllTheDogs();
+                    System.out.println("The dogs are so much happier after the walk! They got a little thirsty though.");
+                }
             }
 
             if (newKey == 6) {
+                myShelter.tick();
                 myShelter.waterPets();
                 System.out.println("These pets won't be thirsty today! Thanks for the water.");
-                myShelter.tick();
             }
 
             if (newKey == 5) {
+                myShelter.tick();
                 myShelter.feedPets();
                 System.out.println("They say thank you for the food.");
-                myShelter.tick();
+                myShelter.playerInstructions();
+
             }
 
             if (newKey == 4) {
@@ -49,24 +75,29 @@ public class VirtualPetApplication {
                 System.out.println(input.nextLine());
                 String choice = input.nextLine();
                 myShelter.adoptOut(choice);
-                System.out.println("We'll miss you, funny face.");
                 myShelter.tick();
+                myShelter.playerInstructions();
 
             }
             if (newKey == 2) {
                 System.out.println("Who all is here, anyway?");
-                System.out.println("Are they happy and hydrated with full bellies?");
+                System.out.println("Let's check in on their stats.");
                 myShelter.tick();
                 myShelter.petStats();
 
             }
             if (newKey == 1) {
+                myShelter.tick();
                 System.out.println("Another silly tail? What is their name?");
                 input.nextLine();
                 String newName = input.nextLine();
-                myShelter.admitPets(newName);
+                System.out.printl           `n("Is it a cat or a dog? Enter \"cat\" for cat or \"dog\" for dog.");
+                String dogOrCat = input.nextLine();
+                System.out.println("Is it organic or a robot? Enter \"organic\" for organic or \"robot\" for robot.");
+                String isItRobo = input.nextLine();
+                myShelter.admitPets(newName, dogOrCat, isItRobo);
                 System.out.println("That name makes me laugh.");
-                myShelter.tick();
+
             }
         }
     }

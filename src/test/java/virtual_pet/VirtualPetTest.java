@@ -8,7 +8,7 @@ public class VirtualPetTest {
         @Test
         public void makeName() {
             //assignment
-            VirtualPet Puffy = new VirtualPet("Puffy", 10, 10, 10);
+            VirtualPet Puffy = new VirtualPet("Puffy", false, 10, 10, 10, 0);
             //action
             String name = Puffy.getName();
             //assertion
@@ -18,7 +18,7 @@ public class VirtualPetTest {
         @Test
         public void happinessLevel() {
             //assignment
-            VirtualPet Puffy = new VirtualPet("Puffy", 10, 10, 10);
+            VirtualPet Puffy = new VirtualPet("Puffy", false, 10, 10, 10, 0);
             //action
             int happiness = Puffy.getHappiness();
             //assertion
@@ -27,7 +27,7 @@ public class VirtualPetTest {
         @Test
         public void foodLevel() {
             //assignment
-            VirtualPet Puffy = new VirtualPet("Puffy", 10, 10, 10 );
+            VirtualPet Puffy = new VirtualPet("Puffy", false, 10, 10, 10, 0);
             //action
             int food = Puffy.getFood();
             //assertion
@@ -36,7 +36,7 @@ public class VirtualPetTest {
         @Test
         public void waterLevel() {
             //assignment
-            VirtualPet Puffy = new VirtualPet("Puffy", 10, 10, 10);
+            VirtualPet Puffy = new VirtualPet("Puffy", false, 10, 10, 10, 0);
             //action
             int water = Puffy.getWater();
             //assertion
@@ -46,7 +46,7 @@ public class VirtualPetTest {
         @Test
         public void changeHappiness() {
             //assignment
-            VirtualPet Puffy = new VirtualPet("Puffy", 10, 10, 10);
+            VirtualPet Puffy = new VirtualPet("Puffy", false, 10, 10, 10, 0);
             //action
             Puffy.changeHappiness();
             int happiness = Puffy.getHappiness();
@@ -57,7 +57,7 @@ public class VirtualPetTest {
         @Test
         public void addFood() {
             //assignment
-            VirtualPet Puffy = new VirtualPet("Puffy", 10,10, 10);
+            VirtualPet Puffy = new OrganicCat("Puffy", false, 10,10, 10, 0);
             //action
             Puffy.addFood();
             int food = Puffy.getFood();
@@ -68,12 +68,21 @@ public class VirtualPetTest {
         @Test
         public void addWater() {
             //assignment
-            VirtualPet Puffy = new VirtualPet("Puffy", 10, 10, 10);
+            VirtualPet Puffy = new VirtualPet("Puffy", false, 10, 10, 10, 0);
             //action
             Puffy.addWater();
             int water = Puffy.getWater();
             //assertion
             assertEquals(13, water);
+        }
+
+        @Test
+        public void canWalkDog() {
+            OrganicDog chloe = new OrganicDog("Chloe", true,10, 10, 10, 0);
+
+            chloe.dogWalk();
+
+            assertEquals(chloe.getHappiness(), 14);
         }
 
     }
