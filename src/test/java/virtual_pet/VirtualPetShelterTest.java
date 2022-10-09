@@ -19,7 +19,7 @@ public class VirtualPetShelterTest {
     public void shelterCanAdmitPets() {
         VirtualPetShelter myShelter = new VirtualPetShelter();
 
-        myShelter.admitPets("Teddy", "robot", "dog");
+        myShelter.admitPets("Teddy", true, false);
 
         assertTrue(myShelter.getPets().containsKey("Teddy"));
     }
@@ -39,7 +39,7 @@ public class VirtualPetShelterTest {
 
         myShelter.tick();
 
-        assertEquals(myShelter.getPets().get("Yuki").getWater(), 9);
+        assertEquals(myShelter.getPets().get("Yuki"), 9);
     }
 
     @Test

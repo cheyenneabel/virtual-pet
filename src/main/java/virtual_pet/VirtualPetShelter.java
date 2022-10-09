@@ -2,7 +2,6 @@ package virtual_pet;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class VirtualPetShelter {
     Map<String, VirtualPet> pets = new HashMap<String, VirtualPet>();
@@ -32,19 +31,33 @@ public class VirtualPetShelter {
     public void petStats() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             VirtualPet virtualPet = entry.getValue();
-            System.out.println(virtualPet.getName() + " is at a " + virtualPet.getHappiness() + " happy level,");
-            System.out.println("has " + virtualPet.getFood() + " servings of food, and " + virtualPet.getWater());
-            System.out.println(" servings of water left.");
+            if (virtualPet instanceof cleanBathroomMess && !virtualPet.dogOrCat) {
+                System.out.println(virtualPet.getName() + " is at a " + OrganicCat.name.getHappiness() + " happy level,");
+                System.out.println("has " + organicCat.getFood() + " servings of food, has " + organicCat.getWater());
+                System.out.println(" servings of water left, and their litter box has a dirty level of ");
+                System.out.println(organicCat.getCageOrLitter() + "/10.");
+            }
+            if (virtualPet instanceof cleanBathroomMess && virtualPet.dogOrCat) {
+                System.out.println(organicDog.getName() + " is at a " + organicDog.getHappiness() + " happy level,");
+                System.out.println("has " + organicDog.getFood() + " servings of food, has " + organicDog.getWater());
+                System.out.println(" servings of water left, and their crate has a dirty level of ");
+                System.out.println(+ organicDog.getCageOrLitter() + "/10.");
+            }
+            if (virtualPet instanceof MaintenanceAndOil && virtualPet.dogOrCat) {
+                RoboticDog roboticDog = new RoboticDog(virtualPet.getName(), true, true, 10, 10);
+                System.out.println(roboticDog.getName() + " has an oil level " + roboticDog.getOil() + "/10");
+                System.out.println("and their maintenance level is " + roboticDog.getMaintenance() + "/10");
+            }
+            if (virtualPet instanceof MaintenanceAndOil && !virtualPet.dogOrCat) {
+                System.out.println(roboticCat.getName() + " has an oil level " + roboticCat.getOil() + "/10");
+                System.out.println("and their maintenance level is " + roboticCat.getMaintenance() + "/10");
+            }
+
         }
-        //for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
-          //  RoboticVirtualPet roboticVirtualPet = entry.getValue();
-            //System.out.println(RoboticVirtualPet).getName() + " has an oil level " + RoboticVirtualPet.getOil() + "/10");
-            //System.out.println("and their maintenance level is " + roboticVirtualPet.getMaintenance() + "/10");
-        }
+    }
 
     public void adoptOut(String choice) {
-
-            pets.remove(choice);
+        pets.remove(choice);
         System.out.println("We'll miss you, funny face.");
     }
 
@@ -52,39 +65,51 @@ public class VirtualPetShelter {
 
 
         if (!isItRobo && dogOrCat) {
-            VirtualPet virtualPet = new OrganicDog(newName, true, 10, 10, 10, 0);
-            pets.put(newName, new OrganicDog(newName, true, 10, 10, 10, 0));
+            OrganicDog virtualPet = new OrganicDog(newName, true, false, 10, 10, 10, 0);
+            pets.put(newName, new OrganicDog(newName, true, false, 10, 10, 10, 0));
         }
         if (isItRobo && dogOrCat) {
-            VirtualPet virtualPet = new RoboticDog(newName, true, 10, 10);
-            pets.put(newName, new RoboticDog(newName, true, 10, 10));
+            RoboticDog virtualPet = new RoboticDog(newName, true, true, 10, 10);
+            pets.put(newName, new RoboticDog(newName, true, true, 10, 10));
         }
         if (!isItRobo && !dogOrCat) {
-            VirtualPet virtualPet = new OrganicCat(newName, false, 10, 10, 10, 0);
-            pets.put(newName, new OrganicCat(newName, false, 10, 10, 10, 0));
+            OrganicCat virtualPet = new OrganicCat(newName, false, false, 10, 10, 10, 0);
+            pets.put(newName, new OrganicCat(newName, false, false, 10, 10, 10, 0));
         }
         if (isItRobo && !dogOrCat) {
-            VirtualPet virtualPet = new RoboticCat(newName, false, 10, 10);
-            pets.put(newName, new RoboticCat(newName, false, 10, 10));
+            RoboticCat virtualPet = new RoboticCat(newName, false, true, 10, 10);
+            pets.put(newName, new RoboticCat(newName, false, true, 10, 10));
         }
 
     }
 
     public void feedPets() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
-            entry.getValue().addFood();
+            VirtualPet virtualPet = entry.getValue();
+            if (virtualPet instanceof cleanBathroomMess) {
+                ((OrganicDog) pets).addFood();
+                ((OrganicCat) pets).addFood();
+            }
         }
     }
 
     public void waterPets() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
-            entry.getValue().addWater();
+            VirtualPet virtualPet = entry.getValue();
+            if (virtualPet instanceof cleanBathroomMess) {
+                ((OrganicDog) pets).addWater();
+                ((OrganicCat) pets).addWater();
+            }
         }
     }
 
     public void giveHappyToPets() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
-            entry.getValue().changeHappiness();
+            VirtualPet virtualPet = entry.getValue();
+            if (virtualPet instanceof cleanBathroomMess) {
+                ((OrganicDog) pets).addHappiness();
+                ((OrganicCat) pets).addHappiness();
+            }
         }
         System.out.println("The robots didn't seem to have interest in playtime, but that's okay.");
         System.out.println("The cats and dogs were entertained.");
@@ -92,7 +117,15 @@ public class VirtualPetShelter {
 
     public void tick() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
-            entry.getValue().tick();
+            VirtualPet virtualPet = entry.getValue();
+            if (virtualPet instanceof cleanBathroomMess) {
+                ((OrganicDog) pets).tick();
+                ((OrganicCat) pets).tick();
+            }
+            if (virtualPet instanceof MaintenanceAndOil) {
+                ((RoboticDog) pets).roboTick();
+                ((RoboticCat) pets).roboTick();
+            }
         }
     }
 
@@ -113,37 +146,42 @@ public class VirtualPetShelter {
         System.out.println("Press 9 to maintain and oil our robotic critters.");
     }
 
-    public void givePetsOil() {
-        for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
-            entry.getValue().addOil();
-        }
-    }
-
     public void roboMaintenance() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
-            entry.getValue();
-           // if (getPets().containsValue(VirtualPet.RoboticVirtualPet));
+            VirtualPet virtualPet = entry.getValue();
+            if (virtualPet instanceof MaintenanceAndOil) {
+                ((RoboticDog) pets).robotMaintenance();
+                ((RoboticCat) pets).robotMaintenance();
+            }
         }
     }
     public void cleanAllCratesAndLitter() {
-
-        if (OrganicDog instanceof VirtualPet) {
-            ((OrganicDog)pets).cleanCageOrLitter();
+        for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
+            VirtualPet virtualPet = entry.getValue();
+            if (virtualPet instanceof cleanBathroomMess) {
+                ((OrganicDog) pets).cleanCageOrLitter();
+                ((OrganicCat) pets).cleanCageOrLitter();
+                System.out.println("This shelter has never smelled better. All crates and litter boxes are clean.");
+            }
         }
-        if(OrganicCat instanceof VirtualPet) {
-            ((OrganicCat)pets).cleanCageOrLitter(); }
-        System.out.println("This shelter has never smelled better. All crates and litter boxes are clean.");
     }
 
     public void walkAllTheDogs() {
-        if (OrganicDog instanceof VirtualPet) {
-            ((OrganicDog)pets).dogWalk();
-        }
-        if (RoboticDog instanceof pets) {
-            ((RoboticDog)pets).dogWalk();
+        for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
+            VirtualPet virtualPet = entry.getValue();
+
+            if (virtualPet instanceof walking) {
+                ((OrganicDog) pets).dogWalk();
+                ((RoboticDog) pets).dogWalk();
+                System.out.println("The organic dogs got to use the bathroom outside and they're happier!");
+                System.out.println("It made them a little hungry, though");
+                System.out.println("The robotic dogs came along, but it didn't seem to affect them too much.");
+            }
+
         }
     }
 }
+
 
 
 

@@ -27,8 +27,6 @@ package virtual_pet;
   }
 
 
-  }
-
 
 
 
