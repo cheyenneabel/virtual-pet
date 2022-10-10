@@ -5,8 +5,6 @@ package virtual_pet;
   public boolean dogOrCat;
   public  boolean isItRobo;
 
-
-
   public VirtualPet(String name, boolean dogOrCat, boolean isItRobo) {
    this.name = name;
    this.dogOrCat = dogOrCat;

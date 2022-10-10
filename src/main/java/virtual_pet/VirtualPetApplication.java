@@ -1,5 +1,6 @@
 package virtual_pet;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class VirtualPetApplication {
@@ -37,10 +38,10 @@ public class VirtualPetApplication {
                 System.out.println("Type \"Play\" to stay inside. Type \"Walk\" to walk the dogs.");
                 String timeForWalk = input.nextLine();
                 System.out.println(input.nextLine());
-                if (timeForWalk == "Play" || timeForWalk == "play") {
+                if (Objects.equals(timeForWalk, "Play") || Objects.equals(timeForWalk, "play")) {
                     myShelter.giveHappyToPets();
                     System.out.println("The pets LOVED the game. Their happiness increased");
-                } if (timeForWalk == "Walk" || timeForWalk == "walk") {
+                } if (Objects.equals(timeForWalk, "Walk") || Objects.equals(timeForWalk, "walk")) {
                     myShelter.walkAllTheDogs();
                     System.out.println("The dogs are so much happier after the walk! They got a little thirsty though.");
                 }
@@ -87,20 +88,20 @@ public class VirtualPetApplication {
                 System.out.println("Another silly tail? What is their name?");
                 input.nextLine();
                 String newName = input.nextLine();
-                System.out.println("Is it a cat or a dog? Enter \"cat\" for cat or \"dog\" for dog.");
-                String dogOrCat = input.nextLine();
-                System.out.println("Is it organic or a robot? Enter \"organic\" for organic or \"robot\" for robot.");
-                String isItRobo = input.nextLine();
-                if(dogOrCat == "cat" && isItRobo == "organic") {
+                System.out.println("Is it a dog? Enter \"false\" for cat or \"true\" for dog.");
+                boolean dogOrCat = Boolean.parseBoolean(input.nextLine());
+                System.out.println("Is it a robot? Enter \"false\" for organic animal or \"true\" for robot.");
+                boolean isItRobo = Boolean.parseBoolean(input.nextLine());
+                if(!dogOrCat && !isItRobo) {
                     myShelter.admitPets(newName, false, false);
                 }
-                if(dogOrCat == "cat" && isItRobo == "robot") {
+                if(!dogOrCat && isItRobo) {
                     myShelter.admitPets(newName, false, true);
                 }
-                if(dogOrCat == "dog" && isItRobo == "organic") {
+                if(dogOrCat && !isItRobo) {
                     myShelter.admitPets(newName, true, false);
                 }
-                if(dogOrCat == "dog" && isItRobo == "robot") {
+                if(dogOrCat && isItRobo) {
                     myShelter.admitPets(newName, true, true);
                 }
                 System.out.println("That name makes me laugh. The new critter is happy to be here.");

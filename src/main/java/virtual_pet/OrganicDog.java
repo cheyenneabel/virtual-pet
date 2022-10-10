@@ -16,15 +16,15 @@ public class OrganicDog extends VirtualPet implements walking, cleanBathroomMess
         this.cageOrLitter = cageOrLitter;
     }
 
-    public static int getHappiness() {
+    public int getHappiness() {
         return happiness;
     }
 
-    public static int getFood() {
+    public int getFood() {
         return food;
     }
 
-    public static int getWater() {
+    public int getWater() {
         return water;
     }
 

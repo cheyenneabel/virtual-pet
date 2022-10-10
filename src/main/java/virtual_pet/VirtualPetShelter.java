@@ -4,10 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VirtualPetShelter {
-    Map<String, VirtualPet> pets = new HashMap<String, VirtualPet>();
+    Map<String, VirtualPet> pets = new HashMap<>();
 
     public VirtualPetShelter() {
-
         OrganicCat yuki = new OrganicCat("Yuki",false , false, 10, 10, 10, 0);
         OrganicCat zeppy = new OrganicCat("Zeppy",  false,false, 10, 10, 10, 0);
         OrganicDog dorian = new OrganicDog("Dorian", true,  false, 10, 10, 10, 0);
@@ -22,37 +21,41 @@ public class VirtualPetShelter {
         pets.put("Orson", orson);
 
     }
-
     public Map<String, VirtualPet> getPets() {
         return pets;
     }
-
 
     public void petStats() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             VirtualPet virtualPet = entry.getValue();
             if (virtualPet instanceof cleanBathroomMess && !virtualPet.dogOrCat) {
-                System.out.println(virtualPet.getName() + " is at a " + OrganicCat.name.getHappiness() + " happy level,");
-                System.out.println("has " + organicCat.getFood() + " servings of food, has " + organicCat.getWater());
+                assert virtualPet instanceof OrganicCat;
+                OrganicCat superOrganicCat = (OrganicCat) virtualPet;
+                System.out.println(superOrganicCat.getName() + " is at a " + superOrganicCat.getHappiness() + " happy level,");
+                System.out.println("has " + superOrganicCat.getFood() + " servings of food, has " + superOrganicCat.getWater());
                 System.out.println(" servings of water left, and their litter box has a dirty level of ");
-                System.out.println(organicCat.getCageOrLitter() + "/10.");
+                System.out.println(superOrganicCat.getCageOrLitter() + "/10.");
             }
             if (virtualPet instanceof cleanBathroomMess && virtualPet.dogOrCat) {
-                System.out.println(organicDog.getName() + " is at a " + organicDog.getHappiness() + " happy level,");
-                System.out.println("has " + organicDog.getFood() + " servings of food, has " + organicDog.getWater());
+                assert virtualPet instanceof OrganicDog;
+                OrganicDog superOrganicDog = (OrganicDog) virtualPet;
+                System.out.println(superOrganicDog.getName() + " is at a " + superOrganicDog.getHappiness() + " happy level,");
+                System.out.println("has " + superOrganicDog.getFood() + " servings of food, has " + superOrganicDog.getWater());
                 System.out.println(" servings of water left, and their crate has a dirty level of ");
-                System.out.println(+ organicDog.getCageOrLitter() + "/10.");
+                System.out.println(superOrganicDog.getCageOrLitter() + "/10.");
             }
             if (virtualPet instanceof MaintenanceAndOil && virtualPet.dogOrCat) {
-                RoboticDog roboticDog = new RoboticDog(virtualPet.getName(), true, true, 10, 10);
-                System.out.println(roboticDog.getName() + " has an oil level " + roboticDog.getOil() + "/10");
-                System.out.println("and their maintenance level is " + roboticDog.getMaintenance() + "/10");
+                assert virtualPet instanceof RoboticDog;
+                RoboticDog superRoboticDog = (RoboticDog) virtualPet;
+                System.out.println(superRoboticDog.getName() + " has an oil level " + superRoboticDog.getOil() + "/10");
+                System.out.println("and their maintenance level is " + superRoboticDog.getMaintenance() + "/10");
             }
             if (virtualPet instanceof MaintenanceAndOil && !virtualPet.dogOrCat) {
-                System.out.println(roboticCat.getName() + " has an oil level " + roboticCat.getOil() + "/10");
-                System.out.println("and their maintenance level is " + roboticCat.getMaintenance() + "/10");
+                assert virtualPet instanceof RoboticCat;
+                RoboticCat superRoboticCat = (RoboticCat) virtualPet;
+                System.out.println(superRoboticCat.getName() + " has an oil level " + superRoboticCat.getOil() + "/10");
+                System.out.println("and their maintenance level is " + superRoboticCat.getMaintenance() + "/10");
             }
-
         }
     }
 
@@ -63,8 +66,7 @@ public class VirtualPetShelter {
 
     public void admitPets(String newName,boolean dogOrCat, boolean isItRobo) {
 
-
-        if (!isItRobo && dogOrCat) {
+        if (dogOrCat && !isItRobo) {
             OrganicDog virtualPet = new OrganicDog(newName, true, false, 10, 10, 10, 0);
             pets.put(newName, new OrganicDog(newName, true, false, 10, 10, 10, 0));
         }
@@ -82,7 +84,6 @@ public class VirtualPetShelter {
         }
 
     }
-
     public void feedPets() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             VirtualPet virtualPet = entry.getValue();
@@ -96,9 +97,11 @@ public class VirtualPetShelter {
     public void waterPets() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             VirtualPet virtualPet = entry.getValue();
-            if (virtualPet instanceof cleanBathroomMess) {
-                ((OrganicDog) pets).addWater();
-                ((OrganicCat) pets).addWater();
+            if (virtualPet instanceof OrganicDog superOrganicDog) {
+                superOrganicDog.addWater();
+            }
+            if (virtualPet instanceof OrganicCat superOrganicCat) {
+                superOrganicCat.addWater();
             }
         }
     }
@@ -106,9 +109,10 @@ public class VirtualPetShelter {
     public void giveHappyToPets() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             VirtualPet virtualPet = entry.getValue();
-            if (virtualPet instanceof cleanBathroomMess) {
-                ((OrganicDog) pets).addHappiness();
-                ((OrganicCat) pets).addHappiness();
+            if (virtualPet instanceof OrganicCat superOrganicCat) {
+                superOrganicCat.addHappiness(); }
+            if (virtualPet instanceof OrganicDog superOrganicDog) {
+                superOrganicDog.addHappiness();
             }
         }
         System.out.println("The robots didn't seem to have interest in playtime, but that's okay.");
@@ -118,16 +122,21 @@ public class VirtualPetShelter {
     public void tick() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             VirtualPet virtualPet = entry.getValue();
-            if (virtualPet instanceof cleanBathroomMess) {
-                ((OrganicDog) pets).tick();
-                ((OrganicCat) pets).tick();
+            if (virtualPet instanceof OrganicDog superOrganicDog) {
+                superOrganicDog.tick();
             }
-            if (virtualPet instanceof MaintenanceAndOil) {
-                ((RoboticDog) pets).roboTick();
-                ((RoboticCat) pets).roboTick();
+            if (virtualPet instanceof OrganicCat superOrganicCat) {
+                superOrganicCat.tick();
+            }
+            if (virtualPet instanceof RoboticDog superRoboticDog) {
+                superRoboticDog.tick();
+
+            }
+            if (virtualPet instanceof OrganicCat superOrganicCat) {
+                superOrganicCat.tick();
             }
         }
-    }
+        }
 
     public void greeting() {
         System.out.println("Welcome to Silly Tails! The silliest dog and cat shelter in town.");
@@ -149,30 +158,39 @@ public class VirtualPetShelter {
     public void roboMaintenance() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             VirtualPet virtualPet = entry.getValue();
-            if (virtualPet instanceof MaintenanceAndOil) {
-                ((RoboticDog) pets).robotMaintenance();
-                ((RoboticCat) pets).robotMaintenance();
+            if (virtualPet instanceof RoboticDog superRoboticDog) {
+                superRoboticDog.robotMaintenance();
+            }
+            if (virtualPet instanceof RoboticCat superRoboticCat) {
+                superRoboticCat.robotMaintenance();
             }
         }
     }
     public void cleanAllCratesAndLitter() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             VirtualPet virtualPet = entry.getValue();
-            if (virtualPet instanceof cleanBathroomMess) {
-                ((OrganicDog) pets).cleanCageOrLitter();
-                ((OrganicCat) pets).cleanCageOrLitter();
+            if (virtualPet instanceof OrganicDog superOrganicDog) {
+                superOrganicDog.cleanCageOrLitter();
+            }
+            if (virtualPet instanceof OrganicCat superOrganicCat) {
+                superOrganicCat.cleanCageOrLitter();
+            }
                 System.out.println("This shelter has never smelled better. All crates and litter boxes are clean.");
             }
         }
-    }
+
 
     public void walkAllTheDogs() {
         for (Map.Entry<String, VirtualPet> entry : pets.entrySet()) {
             VirtualPet virtualPet = entry.getValue();
-
+            if (virtualPet instanceof cleanBathroomMess && virtualPet instanceof walking) {
+                OrganicDog superOrganicDog = (OrganicDog) virtualPet;
+                superOrganicDog.dogWalk();
+            }
             if (virtualPet instanceof walking) {
-                ((OrganicDog) pets).dogWalk();
-                ((RoboticDog) pets).dogWalk();
+                assert virtualPet instanceof RoboticDog;
+                RoboticDog superRoboticDog = (RoboticDog) virtualPet;
+                superRoboticDog.tick();
                 System.out.println("The organic dogs got to use the bathroom outside and they're happier!");
                 System.out.println("It made them a little hungry, though");
                 System.out.println("The robotic dogs came along, but it didn't seem to affect them too much.");

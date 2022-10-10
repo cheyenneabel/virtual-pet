@@ -51,7 +51,7 @@ public class VirtualPetTest {
             Puffy.addHappiness();
             int happiness = Puffy.getHappiness();
             //assertion
-            assertEquals(13, happiness);
+            assertEquals(15, happiness);
         }
 
         @Test
@@ -62,7 +62,7 @@ public class VirtualPetTest {
             Puffy.addFood();
             int food = Puffy.getFood();
             //assertion
-            assertEquals(13, food);
+            assertEquals(15, food);
 
         }
         @Test
@@ -73,7 +73,7 @@ public class VirtualPetTest {
             Puffy.addWater();
             int water = Puffy.getWater();
             //assertion
-            assertEquals(13, water);
+            assertEquals(15, water);
         }
 
         @Test

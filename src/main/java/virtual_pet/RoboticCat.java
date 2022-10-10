@@ -11,15 +11,15 @@ public class RoboticCat extends VirtualPet implements MaintenanceAndOil {
         this.maintenance = maintenance;
     }
 
-    public static int getOil() {
+    public int getOil() {
         return oil;
     }
 
-    public static int getMaintenance() {
+    public int getMaintenance() {
         return maintenance;
     }
 
-    public void roboTick() {
+    public void tick() {
         maintenance -= 1;
         oil -= 1;
     }

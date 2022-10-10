@@ -18,7 +18,7 @@ public class RoboticDog extends VirtualPet implements walking, MaintenanceAndOil
         return maintenance;
     }
 
-    public void roboTick() {
+    public void tick() {
         maintenance -= 1;
         oil -= 1;
     }
