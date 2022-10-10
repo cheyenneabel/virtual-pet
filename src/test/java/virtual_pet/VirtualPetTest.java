@@ -85,5 +85,14 @@ public class VirtualPetTest {
             assertEquals(chloe.getHappiness(), 14);
         }
 
+        @Test
+        public void canMaintainAndOilRobots() {
+            RoboticDog chloe = new RoboticDog("Chloe", true, true, 10, 10);
+
+            chloe.robotMaintenance();
+
+            assertEquals(chloe.getOil(), 20);
+        }
+
     }
 

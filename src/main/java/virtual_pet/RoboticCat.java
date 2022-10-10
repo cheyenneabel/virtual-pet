@@ -26,7 +26,7 @@ public class RoboticCat extends VirtualPet implements MaintenanceAndOil {
 
     @Override
     public void robotMaintenance() {
-        oil = 10;
-        maintenance = 10;
+        oil += 10;
+        maintenance = +10;
     }
 }

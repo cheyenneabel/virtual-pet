@@ -31,7 +31,7 @@ public class RoboticDog extends VirtualPet implements walking, MaintenanceAndOil
 
     @Override
     public void robotMaintenance() {
-        oil = 10;
-        maintenance = 10;
+        oil += 10;
+        maintenance += 10;
     }
 }
