@@ -38,11 +38,11 @@ public class VirtualPetShelterTest {
     @Test
     public void tick() {
 
-        OrganicCat superOrganicCat = new OrganicCat("Yuki", false, false, 10, 10, 10, 0);
-        superOrganicCat.tick();
+        OrganicCat virtualPet = new OrganicCat("Yuki", false, false, 10, 10, 10, 0);
+        ((OrganicCat) virtualPet).tick();
 
 
-        assertEquals(superOrganicCat.getWater(), 9);
+        assertEquals(((OrganicCat) virtualPet).getWater(), 9);
     }
 }
 

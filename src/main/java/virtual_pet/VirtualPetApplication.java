@@ -22,7 +22,7 @@ public class VirtualPetApplication {
             if (newKey == 9) {
                 myShelter.tick();
                 myShelter.roboMaintenance();
-                System.out.println("All the robots are oiled up and maintenance levels are 10/10.");
+                System.out.println("All the robots are oiled up and maintenance levels are high.");
                 System.out.println("They're like energizer bunnies.");
             }
 
@@ -36,12 +36,14 @@ public class VirtualPetApplication {
                 myShelter.tick();
                 System.out.println("Would you like to play inside with all the pets, or take the dogs on a walk?");
                 System.out.println("Type \"Play\" to stay inside. Type \"Walk\" to walk the dogs.");
+                input.nextLine();
                 String timeForWalk = input.nextLine();
-                System.out.println(input.nextLine());
                 if (Objects.equals(timeForWalk, "Play") || Objects.equals(timeForWalk, "play")) {
-                    myShelter.giveHappyToPets();
                     System.out.println("The pets LOVED the game. Their happiness increased");
-                } if (Objects.equals(timeForWalk, "Walk") || Objects.equals(timeForWalk, "walk")) {
+                    myShelter.giveHappyToPets();
+                    myShelter.tick();
+                }
+                    if (Objects.equals(timeForWalk, "Walk") || Objects.equals(timeForWalk, "walk")) {
                     myShelter.walkAllTheDogs();
                     System.out.println("The dogs are so much happier after the walk! They got a little thirsty though.");
                 }
